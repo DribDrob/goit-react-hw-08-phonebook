@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const FormEl = styled(Form)`
   margin-bottom: 32px;
   border: 2px dotted;
   padding: 16px;
@@ -13,7 +14,7 @@ export const Label = styled.label`
     margin-right: 8px;
   }
 `;
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 100%;
   font-size: 14px;
 `;
