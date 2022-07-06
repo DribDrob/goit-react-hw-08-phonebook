@@ -9,6 +9,7 @@ export const FormEl = styled(Form)`
 `;
 export const Label = styled.label`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 8px;
   > span {
     margin-right: 8px;
@@ -18,6 +19,12 @@ export const Input = styled(Field)`
   width: 100%;
   font-size: 14px;
 `;
+
+export const ErrorText = styled.p`
+  color: red;
+  font-size: 12px;
+`;
+
 export const Button = styled.button`
   padding: 4px 16px;
   cursor: pointer;
