@@ -10,10 +10,8 @@ export const FormEl = styled(Form)`
 export const Label = styled.label`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 8px;
-  > span {
-    margin-right: 8px;
-  }
+  margin-bottom: 16px;
+  gap: 4px;
 `;
 export const Input = styled(Field)`
   width: 100%;
