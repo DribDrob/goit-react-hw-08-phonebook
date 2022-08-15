@@ -1,8 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
-import { nanoid } from 'nanoid';
 import * as yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact, getItemsValue } from 'redux/slice';
+import { useAddContactMutation, useGetContactsQuery } from 'redux/slice';
 import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
 
 const schema = yup.object().shape({
@@ -13,7 +11,7 @@ const schema = yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required(),
-  number: yup
+  phone: yup
     .string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
@@ -33,13 +31,12 @@ const FormError = ({ name }) => {
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
-  const contacts = useSelector(getItemsValue);
-
-  const dispatch = useDispatch();
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const handleSubmit = (values, { resetForm }) => {
     addContactItem(values);
@@ -51,11 +48,7 @@ export const ContactForm = () => {
       alert(`${newContact.name} is already in contacts.`);
       return;
     }
-    const contact = {
-      id: nanoid(),
-      ...newContact,
-    };
-    dispatch(addContact(contact));
+    addContact(newContact);
   };
 
   return (
@@ -73,8 +66,8 @@ export const ContactForm = () => {
 
         <Label>
           <span>Number</span>
-          <Input type="tel" name="number" />
-          <FormError name="number" component="div" />
+          <Input type="tel" name="phone" />
+          <FormError name="phone" component="div" />
         </Label>
         <Button type="submit">Add contact</Button>
       </FormEl>

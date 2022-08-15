@@ -1,23 +1,29 @@
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { removeContact } from 'redux/slice';
+// import PropTypes from 'prop-types';
+import { useRemoveContactMutation } from 'redux/slice';
+// import { useDispatch } from 'react-redux';
+// import { removeContact } from 'redux/slice';
 import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
-export const ContactItem = ({ contact }) => {
-  const { name, number, id } = contact;
-  const dispatch = useDispatch();
+export const ContactItem = ({ id, name, phone }) => {
+  const [removeContact, { isLoading: isRemoving }] = useRemoveContactMutation();
 
   return (
     <Item>
       <ContactName>{name}</ContactName>
-      <ContactNumber>{number}</ContactNumber>
-      <Button type="button" onClick={() => dispatch(removeContact(id))}>
+      <ContactNumber>{phone}</ContactNumber>
+      <Button
+        disabled={isRemoving}
+        type="button"
+        onClick={() => removeContact(id)}
+      >
         Delete
       </Button>
     </Item>
   );
 };
 
-ContactItem.propTypes = {
-  contact: PropTypes.objectOf(PropTypes.string).isRequired,
-};
+// ContactItem.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired,
+// };
