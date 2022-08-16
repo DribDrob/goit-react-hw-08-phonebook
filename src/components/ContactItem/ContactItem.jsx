@@ -1,7 +1,4 @@
-// import PropTypes from 'prop-types';
 import { useRemoveContactMutation } from 'redux/slice';
-// import { useDispatch } from 'react-redux';
-// import { removeContact } from 'redux/slice';
 import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, phone }) => {
@@ -21,9 +18,3 @@ export const ContactItem = ({ id, name, phone }) => {
     </Item>
   );
 };
-
-// ContactItem.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   phone: PropTypes.string.isRequired,
-// };

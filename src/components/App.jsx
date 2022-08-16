@@ -2,14 +2,14 @@ import { Box } from './Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
+import { ToastContainer } from 'react-toastify';
 import { Title, Subtitle } from './Titles.styled';
-import { useGetContactsQuery } from 'redux/slice';
 import { Loader } from './Loader/Loader';
-import { useState } from 'react';
+import { useContacts } from 'hooks/useContacts';
 
 export const App = () => {
-  const { data: contacts, isFetching } = useGetContactsQuery();
-  const [filter, setFilter] = useState('');
+  const { filter, setFilter, filteredContacts, isFetching } = useContacts();
+
   return (
     <Box color="black" pl={3} pr={3} m="32px auto" width={1}>
       <Title>Phonebook</Title>
@@ -17,7 +17,10 @@ export const App = () => {
       <Subtitle>Contacts</Subtitle>
       <Filter value={filter} onChange={e => setFilter(e.currentTarget.value)} />
       {isFetching && <Loader />}
-      {contacts && <ContactList contacts={contacts} filter={filter} />}
+      {filteredContacts.length !== 0 && (
+        <ContactList contacts={filteredContacts} />
+      )}
+      <ToastContainer autoClose={3000} />
     </Box>
   );
 };

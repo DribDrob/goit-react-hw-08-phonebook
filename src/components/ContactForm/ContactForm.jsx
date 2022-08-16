@@ -1,5 +1,7 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAddContactMutation, useGetContactsQuery } from 'redux/slice';
 import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
 
@@ -45,7 +47,7 @@ export const ContactForm = () => {
 
   const addContactItem = newContact => {
     if (contacts.find(contact => contact.name === newContact.name)) {
-      alert(`${newContact.name} is already in contacts.`);
+      toast.error(`${newContact.name} is already in contacts.`);
       return;
     }
     addContact(newContact);
