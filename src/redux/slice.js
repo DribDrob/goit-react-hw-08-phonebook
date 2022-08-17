@@ -28,15 +28,11 @@ export const contactsApi = createApi({
       }),
       invalidatesTags: ['Contacts'],
     }),
-    filterContacts: builder.query({
-      query: (filter) => `/contacts?filter=${filter}`,
-      invalidatesTags: ['Contacts'],
-    }),
   })
 });
   
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetContactsQuery, useAddContactMutation, useRemoveContactMutation, useFilterContactsQuery } = contactsApi;
+export const { useGetContactsQuery, useAddContactMutation, useRemoveContactMutation} = contactsApi;
 
   
