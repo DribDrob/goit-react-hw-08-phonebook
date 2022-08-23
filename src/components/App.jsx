@@ -1,26 +1,26 @@
-import { Box } from './Box';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Filter } from 'components/Filter/Filter';
-import { ContactList } from 'components/ContactList/ContactList';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { Title, Subtitle } from './Titles.styled';
-import { Loader } from './Loader/Loader';
-import { useContacts } from 'hooks/useContacts';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const Contacts = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
-  const { filter, setFilter, filteredContacts, isFetching } = useContacts();
-
   return (
-    <Box color="black" pl={3} pr={3} m="32px auto" width={1}>
-      <Title>Phonebook</Title>
-      <ContactForm />
-      <Subtitle>Contacts</Subtitle>
-      <Filter value={filter} onChange={e => setFilter(e.currentTarget.value)} />
-      {isFetching && <Loader />}
-      {filteredContacts.length !== 0 && (
-        <ContactList contacts={filteredContacts} />
-      )}
-      <ToastContainer autoClose={3000} />
-    </Box>
+    <>
+      <div>
+        <Routes>
+          <Route path="/login" element={<SharedLayout />}>
+            <Route index element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="*" element={<Login />} />
+          </Route>
+        </Routes>
+        <ToastContainer autoClose={3000} />
+      </div>
+    </>
   );
 };

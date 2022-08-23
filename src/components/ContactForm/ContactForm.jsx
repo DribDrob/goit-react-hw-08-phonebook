@@ -2,7 +2,10 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAddContactMutation, useGetContactsQuery } from 'redux/slice';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from 'redux/contacts/contactsSlice';
 import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
 
 const schema = yup.object().shape({

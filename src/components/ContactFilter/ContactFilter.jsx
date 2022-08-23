@@ -1,6 +1,6 @@
-import { FilterField } from './Filter.styled';
+import { FilterField } from './ContactFilter.styled';
 
-export const Filter = ({ value, onChange }) => {
+export const ContactFilter = ({ value, onChange }) => {
   return (
     <FilterField>
       <span>Find contacts by name</span>

@@ -1,4 +1,4 @@
-import { useRemoveContactMutation } from 'redux/slice';
+import { useRemoveContactMutation } from 'redux/contacts/contactsSlice';
 import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, phone }) => {

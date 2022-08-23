@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useGetContactsQuery } from 'redux/slice';
+import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 
 export const useContacts = () => {
   const { data: contacts, isFetching } = useGetContactsQuery();
