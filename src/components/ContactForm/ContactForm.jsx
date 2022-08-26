@@ -1,11 +1,11 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  useAddContactMutation,
-  useGetContactsQuery,
-} from 'redux/contacts/contactsSlice';
+// import {
+//   useAddContactMutation,
+//   useGetContactsQuery,
+// } from 'redux/contacts/contactsSlice';
 import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
 
 const schema = yup.object().shape({
@@ -40,21 +40,22 @@ const initialValues = {
 };
 
 export const ContactForm = () => {
-  const { data: contacts } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  // const { data: contacts } = useGetContactsQuery();
+  // const [addContact] = useAddContactMutation();
 
   const handleSubmit = (values, { resetForm }) => {
-    addContactItem(values);
+    console.log(values);
+    // addContactItem(values);
     resetForm();
   };
 
-  const addContactItem = newContact => {
-    if (contacts.find(contact => contact.name === newContact.name)) {
-      toast.error(`${newContact.name} is already in contacts.`);
-      return;
-    }
-    addContact(newContact);
-  };
+  // const addContactItem = newContact => {
+  //   if (contacts.find(contact => contact.name === newContact.name)) {
+  //     toast.error(`${newContact.name} is already in contacts.`);
+  //     return;
+  //   }
+  //   addContact(newContact);
+  // };
 
   return (
     <Formik

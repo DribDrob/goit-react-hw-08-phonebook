@@ -1,20 +1,20 @@
-import { useRemoveContactMutation } from 'redux/contacts/contactsSlice';
-import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
+// import { useRemoveContactMutation } from 'redux/contacts/contactsSlice';
+import { Item, ContactName, ContactNumber } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, phone }) => {
-  const [removeContact, { isLoading: isRemoving }] = useRemoveContactMutation();
+  // const [removeContact, { isLoading: isRemoving }] = useRemoveContactMutation();
 
   return (
     <Item>
       <ContactName>{name}</ContactName>
       <ContactNumber>{phone}</ContactNumber>
-      <Button
+      {/* <Button
         disabled={isRemoving}
         type="button"
         onClick={() => removeContact(id)}
       >
         Delete
-      </Button>
+      </Button> */}
     </Item>
   );
 };

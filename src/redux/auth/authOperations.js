@@ -13,9 +13,9 @@ const token = {
 
 const register = createAsyncThunk(
   'auth/register',
-  async (_, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
-        const data = await authApi.registerUser();
+        const data = await authApi.registerUser(user);
         token.set(data.token);
       return data;
     } catch (error) {
@@ -26,9 +26,9 @@ const register = createAsyncThunk(
 
 const logIn = createAsyncThunk(
   'auth/login',
-  async (_, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
-        const data = await authApi.logIn();
+        const data = await authApi.logIn(user);
          token.set(data.token);
       return data;
     } catch (error) {
