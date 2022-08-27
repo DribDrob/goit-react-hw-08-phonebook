@@ -14,9 +14,9 @@ const get = createAsyncThunk(
 );
 const add = createAsyncThunk(
   'contacts/add',
-  async (_, { rejectWithValue }) => {
+  async (newContact, { rejectWithValue }) => {
     try {
-      const contact = await contactsApi.addContact();
+      const contact = await contactsApi.addContact(newContact);
       return contact;
     } catch (error) {
       return rejectWithValue(error);
@@ -26,9 +26,9 @@ const add = createAsyncThunk(
 
 const remove = createAsyncThunk(
   'contacts/remove',
-  async (_, { rejectWithValue }) => {
+  async (contactId, { rejectWithValue }) => {
     try {
-      const contacts = await contactsApi.removeContact();
+      const contacts = await contactsApi.removeContact(contactId);
       return contacts;
     } catch (error) {
       return rejectWithValue(error);
@@ -38,9 +38,9 @@ const remove = createAsyncThunk(
 
 const update = createAsyncThunk(
   'contacts/update',
-  async (_, { rejectWithValue }) => {
+  async (updatedContact, { rejectWithValue }) => {
     try {
-      const contact = await contactsApi.updateContact();
+      const contact = await contactsApi.updateContact(updatedContact);
       return contact;
     } catch (error) {
       return rejectWithValue(error);

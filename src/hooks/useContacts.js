@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react';
-import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
+import { useSelector } from 'react-redux';
+import {  contactsSelectors } from 'redux/contacts';
 
 export const useContacts = () => {
-  const { data: contacts, isFetching } = useGetContactsQuery();
+   const contacts = useSelector(contactsSelectors.getContacts);
   const [filter, setFilter] = useState('');
+  
   const filteredContacts = useMemo(() => {
     return (
       contacts?.filter(contact =>
@@ -11,10 +13,10 @@ export const useContacts = () => {
       ) ?? []
     );
   }, [contacts, filter]);
+
   return {
     filter,
     setFilter,
     filteredContacts,
-    isFetching,
   };
 };

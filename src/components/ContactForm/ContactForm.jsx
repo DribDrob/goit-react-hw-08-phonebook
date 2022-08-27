@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 //   useGetContactsQuery,
 // } from 'redux/contacts/contactsSlice';
 import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
+import { useDispatch } from 'react-redux';
+import { contactsOperations } from 'redux/contacts';
 
 const schema = yup.object().shape({
   name: yup
@@ -16,7 +18,7 @@ const schema = yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required(),
-  phone: yup
+  number: yup
     .string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
@@ -36,16 +38,14 @@ const FormError = ({ name }) => {
 
 const initialValues = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 export const ContactForm = () => {
-  // const { data: contacts } = useGetContactsQuery();
-  // const [addContact] = useAddContactMutation();
-
+  const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
-    // addContactItem(values);
+    dispatch(contactsOperations.add(values));
     resetForm();
   };
 
@@ -72,8 +72,8 @@ export const ContactForm = () => {
 
         <Label>
           <span>Number</span>
-          <Input type="tel" name="phone" />
-          <FormError name="phone" component="div" />
+          <Input type="tel" name="number" />
+          <FormError name="number" component="div" />
         </Label>
         <Button type="submit">Add contact</Button>
       </FormEl>

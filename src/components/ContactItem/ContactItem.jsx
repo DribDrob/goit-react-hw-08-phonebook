@@ -1,20 +1,21 @@
-// import { useRemoveContactMutation } from 'redux/contacts/contactsSlice';
-import { Item, ContactName, ContactNumber } from './ContactItem.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
-export const ContactItem = ({ id, name, phone }) => {
-  // const [removeContact, { isLoading: isRemoving }] = useRemoveContactMutation();
-
+export const ContactItem = ({ id, name, number }) => {
+  const isContactsLoading = useSelector(contactsSelectors.isContactsLoading);
+  const dispatch = useDispatch();
   return (
     <Item>
       <ContactName>{name}</ContactName>
-      <ContactNumber>{phone}</ContactNumber>
-      {/* <Button
-        disabled={isRemoving}
+      <ContactNumber>{number}</ContactNumber>
+      <Button
+        disabled={isContactsLoading}
         type="button"
-        onClick={() => removeContact(id)}
+        onClick={() => dispatch(contactsOperations.remove(id))}
       >
         Delete
-      </Button> */}
+      </Button>
     </Item>
   );
 };
