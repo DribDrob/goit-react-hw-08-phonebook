@@ -9,6 +9,7 @@ export const ContactItem = ({ id, name, number }) => {
     <Item>
       <ContactName>{name}</ContactName>
       <ContactNumber>{number}</ContactNumber>
+      <Button type="button">Edit</Button>
       <Button
         disabled={isContactsLoading}
         type="button"

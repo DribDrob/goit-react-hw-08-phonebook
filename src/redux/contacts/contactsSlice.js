@@ -5,11 +5,16 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  filter: '',
 }
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
+  reducers: {
+    changeFilter(state, { payload })
+    { state.filter = payload; }
+  },
   extraReducers: {
     [contactsOperations.get.pending](state, _) {
       state.isLoading = true;
@@ -35,7 +40,6 @@ const contactsSlice = createSlice({
       state.isLoading = true;
     },
     [contactsOperations.remove.fulfilled](state, { payload }) {
-      console.log(payload);
       state.items = state.items.filter(item => item.id !== payload);
       state.isLoading = false;
     },
@@ -45,4 +49,5 @@ const contactsSlice = createSlice({
     }
   },
 );
+export const { changeFilter } = contactsSlice.actions;
 export default contactsSlice.reducer;

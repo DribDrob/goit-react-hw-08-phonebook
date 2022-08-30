@@ -1,38 +1,28 @@
 import { Loader } from 'components/Loader/Loader';
+import { Navigation } from 'components/Nevigation/Navigation';
+import { UserMenu } from 'components/UserMenu/UserMenu';
 import { Suspense } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
-import { authOperations } from 'redux/auth';
+import { NavLink } from 'react-router-dom';
 
-import { Container, Header, Link } from './SharedLayout.styled';
+import { Container, Header } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
-  const userEmail = useSelector(authSelectors.getUserEmail);
   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
-  const dispatch = useDispatch();
+
   return (
     <Container>
       <Header>
         <p>PhoneBook App</p>
         {isLoggedIn ? (
           <>
-            <Link to="/contacts">Contacts</Link>
-            <div>
-              <p>{userEmail}</p>
-              <button
-                type="button"
-                onClick={() => dispatch(authOperations.logOut())}
-              >
-                Logout
-              </button>
-            </div>
+            <NavLink to="/contacts">Contacts</NavLink>
+            <UserMenu />
           </>
         ) : (
-          <nav>
-            <Link to="/login">Sign in</Link>
-            <Link to="/register">Sign up</Link>
-          </nav>
+          <Navigation />
         )}
       </Header>
       <Suspense fallback={<Loader />}>
