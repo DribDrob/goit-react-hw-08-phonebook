@@ -2,9 +2,9 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-import { FormEl, Label, Input, ErrorText, Button } from './LoginForm.styled';
+import Button from '@mui/material/Button';
+import { FormEl, Label, Input, ErrorText } from './LoginForm.styled';
+// import { FormEl, Label, Input, ErrorText, Button } from './LoginForm.styled';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -49,7 +49,9 @@ export const LoginForm = () => {
           <Input type="password" name="password" />
           <FormError name="password" />
         </Label>
-        <Button type="submit">Sign in</Button>
+        <Button type="submit" variant="contained">
+          Sign in
+        </Button>
       </FormEl>
     </Formik>
   );
