@@ -1,7 +1,6 @@
 // import { Button } from '@mui/material';
 import { Button, Stack } from '@mui/material';
 import { NavLink as RouterLink } from 'react-router-dom';
-// import styled from '@emotion/styled';
 
 export const Navigation = () => {
   return (
@@ -11,6 +10,12 @@ export const Navigation = () => {
         to="/login"
         variant="outlined"
         color="inherit"
+        sx={{
+          '&.active': {
+            bgcolor: 'background.paper',
+            color: 'primary.main',
+          },
+        }}
       >
         Sign in
       </Button>
@@ -19,6 +24,12 @@ export const Navigation = () => {
         to="/register"
         variant="outlined"
         color="inherit"
+        sx={{
+          '&.active': {
+            bgcolor: 'background.paper',
+            color: 'primary.main',
+          },
+        }}
       >
         Sign up
       </Button>
