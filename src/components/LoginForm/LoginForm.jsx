@@ -1,9 +1,10 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import Button from '@mui/material/Button';
-import { FormEl, Label, Input, ErrorText } from './LoginForm.styled';
+// import { FormEl } from './LoginForm.styled';
+import { Box, TextField } from '@mui/material';
 // import { FormEl, Label, Input, ErrorText, Button } from './LoginForm.styled';
 
 const schema = yup.object().shape({
@@ -11,14 +12,14 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => <ErrorText>{message}</ErrorText>}
-    />
-  );
-};
+// const FormError = ({ name }) => {
+//   return (
+//     <ErrorMessage
+//       name={name}
+//       render={message => <ErrorText>{message}</ErrorText>}
+//     />
+//   );
+// };
 
 const initialValues = {
   email: '',
@@ -38,8 +39,34 @@ export const LoginForm = () => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <FormEl autoComplete="off">
-        <Label>
+      <Box
+        component="form"
+        sx={{
+          mt: 1,
+          textAlign: 'center',
+        }}
+      >
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+        />
+        {/* <Label>
           <span>Email</span>
           <Input type="email" name="email" />
           <FormError name="email" />
@@ -48,11 +75,18 @@ export const LoginForm = () => {
           <span>Password</span>
           <Input type="password" name="password" />
           <FormError name="password" />
-        </Label>
-        <Button type="submit" variant="contained">
-          Sign in
+        </Label> */}
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>
+          Sign In
         </Button>
-      </FormEl>
+        {/* <Grid container>
+          <Grid item>
+            <Link component={RouterLink} to="/register" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+        </Grid> */}
+      </Box>
     </Formik>
   );
 };
@@ -77,10 +111,6 @@ export const LoginForm = () => {
     type="password"
     id="password"
     autoComplete="current-password"
-  />
-  <FormControlLabel
-    control={<Checkbox value="remember" color="primary" />}
-    label="Remember me"
   />
   <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
     Sign In
