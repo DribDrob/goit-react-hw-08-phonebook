@@ -1,12 +1,8 @@
-import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-// import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
 import 'react-toastify/dist/ReactToastify.css';
-// import {
-//   useAddContactMutation,
-//   useGetContactsQuery,
-// } from 'redux/contacts/contactsSlice';
-import { FormEl, Label, Input, ErrorText, Button } from './ContactForm.styled';
+import Button from '@mui/material/Button';
+import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts';
 
@@ -27,14 +23,14 @@ const schema = yup.object().shape({
     .required(),
 });
 
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => <ErrorText>{message}</ErrorText>}
-    />
-  );
-};
+// const FormError = ({ name }) => {
+//   return (
+//     <ErrorMessage
+//       name={name}
+//       render={message => <ErrorText>{message}</ErrorText>}
+//     />
+//   );
+// };
 
 const initialValues = {
   name: '',
@@ -48,6 +44,11 @@ export const ContactForm = () => {
     dispatch(contactsOperations.add(values));
     resetForm();
   };
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: schema,
+    onSubmit: handleSubmit,
+  });
 
   // const addContactItem = newContact => {
   //   if (contacts.find(contact => contact.name === newContact.name)) {
@@ -58,25 +59,45 @@ export const ContactForm = () => {
   // };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
+    <Box
+      component="form"
+      onSubmit={formik.handleSubmit}
+      sx={{
+        mt: 1,
+        textAlign: 'center',
+      }}
     >
-      <FormEl autoComplete="off">
-        <Label>
-          <span>Name</span>
-          <Input type="text" name="name" />
-          <FormError name="name" />
-        </Label>
-
-        <Label>
-          <span>Number</span>
-          <Input type="tel" name="number" />
-          <FormError name="number" component="div" />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </FormEl>
-    </Formik>
+      <TextField
+        margin="normal"
+        fullWidth
+        required
+        size="small"
+        id="name"
+        label="Name"
+        name="name"
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        error={formik.touched.name && Boolean(formik.errors.name)}
+        autoComplete="name"
+        autoFocus
+      />
+      <TextField
+        margin="normal"
+        fullWidth
+        required
+        size="small"
+        name="number"
+        label="Number"
+        type="number"
+        id="number"
+        value={formik.values.number}
+        onChange={formik.handleChange}
+        error={formik.touched.number && Boolean(formik.errors.number)}
+        autoComplete="current-number"
+      />
+      <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>
+        Add contact
+      </Button>
+    </Box>
   );
 };

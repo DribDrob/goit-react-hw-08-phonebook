@@ -24,7 +24,8 @@ const Login = () => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage:
+              'url(https://source.unsplash.com/random?phone&book&contact)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: t =>
               t.palette.mode === 'light'
@@ -36,11 +37,6 @@ const Login = () => {
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
-            // mx={4}
-            // my={5}
-            // alignItems="center"
-            // display="flex"
-            // flexDirection="column"
             sx={{
               my: 8,
               mx: 4,
@@ -60,10 +56,6 @@ const Login = () => {
         </Grid>
       </Grid>
     </ThemeProvider>
-    // <Box color="black" pl={3} pr={3} m="32px auto" width={1}>
-    //   <h2>Sign in</h2>
-    //   <LoginForm />
-    // </Box>
   );
 };
 
