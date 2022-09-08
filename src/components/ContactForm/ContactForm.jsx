@@ -96,7 +96,7 @@ export const ContactForm = () => {
         autoComplete="current-number"
       />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>
-        Add contact
+        + Add contact
       </Button>
     </Box>
   );
