@@ -1,3 +1,4 @@
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -18,36 +19,39 @@ export const App = () => {
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
-
+  const theme = createTheme();
   return (
     <>
       {!isCurrentUserLoading && (
         <div>
-          <Routes>
-            <Route path="/" element={<SharedLayout />}>
-              <Route index element={<Navigate to="login" />} />
-              <Route element={<PublicRoutes restricted />}>
-                <Route path="login" element={<Login />} />
-              </Route>
-              <Route element={<PublicRoutes restricted />}>
-                <Route path="register" element={<Register />} />
-              </Route>
-              <Route element={<PrivateRoutes />}>
-                <Route path="contacts" element={<Contacts />} />
-              </Route>
-              {/* <Route
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Routes>
+              <Route path="/" element={<SharedLayout />}>
+                <Route index element={<Navigate to="login" />} />
+                <Route element={<PublicRoutes restricted />}>
+                  <Route path="login" element={<Login />} />
+                </Route>
+                <Route element={<PublicRoutes restricted />}>
+                  <Route path="register" element={<Register />} />
+                </Route>
+                <Route element={<PrivateRoutes />}>
+                  <Route path="contacts" element={<Contacts />} />
+                </Route>
+                {/* <Route
               element={
                 <PrivateRoutes path="contacts">
                   <Contacts />
                 </PrivateRoutes>
               }
             /> */}
-              <Route element={<PublicRoutes restricted />}>
-                <Route path="*" element={<Login />} />
+                <Route element={<PublicRoutes restricted />}>
+                  <Route path="*" element={<Login />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-          <ToastContainer autoClose={3000} />
+            </Routes>
+            <ToastContainer autoClose={3000} />
+          </ThemeProvider>
         </div>
       )}
     </>

@@ -1,7 +1,7 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContactList } from 'components/ContactList/ContactList';
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 import { contactsOperations } from 'redux/contacts';
 import { useEffect } from 'react';
 // import { Title, Subtitle } from './Titles.styled';
@@ -39,11 +39,16 @@ const Contacts = () => {
       }}
     >
       <Box
+        maxWidth="360px"
         sx={{
           mx: 4,
         }}
       >
-        <Typography variant="h5" component="p" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          component="p"
+          // sx={{ flexGrow: 1 }}
+        >
           Fill to add a contact
         </Typography>
         <ContactForm />
@@ -51,15 +56,22 @@ const Contacts = () => {
       <Box
         sx={{
           mx: 4,
+          flexGrow: 2,
         }}
       >
-        <Typography variant="h5" component="p" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          component="p"
+          // sx={{ flexGrow: 1 }}
+        >
           Contacts
         </Typography>
         <ContactFilter />
         {/* {isFetching && <Loader />} */}
+
         {contactsItems.length !== 0 && <ContactList contacts={contactsItems} />}
-        <ToastContainer autoClose={3000} />
+
+        {/* <ToastContainer autoClose={3000} /> */}
       </Box>
     </Box>
   );
