@@ -4,11 +4,17 @@ import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneAndroidRoundedIcon from '@mui/icons-material/PhoneAndroidRounded';
+// import { changeEditStatus } from 'redux/contacts/contactsSlice';
+import { ContactEditForm } from 'components/ContactEditForm/ContactEditForm';
+import { useState } from 'react';
 
 // import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, number }) => {
+  const [isEdit, setIsEdit] = useState(false);
   const isContactsLoading = useSelector(contactsSelectors.isContactsLoading);
+  // const isContactEditing = useSelector(contactsSelectors.isContactEditing);
+
   const dispatch = useDispatch();
   return (
     <ListItem>
@@ -17,17 +23,37 @@ export const ContactItem = ({ id, name, number }) => {
         fontSize="large"
         sx={{ mr: 2 }}
       />
-      <ListItemText primary={name} secondary={number} sx={{ maxWidth: 320 }} />
-      {/* <ListItemText primary={number} /> */}
+      {isEdit ? (
+        <ContactEditForm
+          idValue={id}
+          initialValues={{ name, number }}
+          onSubmit={() => setIsEdit(false)}
+        />
+      ) : (
+        <ListItemText
+          primary={name}
+          secondary={number}
+          sx={{ maxWidth: 320 }}
+        />
+      )}
+      {!isEdit && (
+        <Fab
+          color="secondary"
+          aria-label="edit"
+          size="small"
+          sx={{ mr: 2, zIndex: 'auto' }}
+        >
+          <EditIcon
+            onClick={() => setIsEdit(true)}
+            // onClick={() => dispatch(changeEditStatus())}
+          />
+        </Fab>
+      )}
       <Fab
-        color="primary"
-        aria-label="edit"
+        aria-label="delete"
         size="small"
-        sx={{ mr: 2, zIndex: 'auto' }}
+        sx={{ zIndex: 'auto', minWidth: '40px' }}
       >
-        <EditIcon />
-      </Fab>
-      <Fab aria-label="delete" size="small" sx={{ zIndex: 'auto' }}>
         <DeleteIcon
           disabled={isContactsLoading}
           type="button"
