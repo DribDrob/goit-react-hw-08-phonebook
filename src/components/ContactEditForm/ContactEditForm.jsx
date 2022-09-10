@@ -29,7 +29,7 @@ export const ContactEditForm = ({ idValue, initialValues, onSubmit }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(contactsOperations.update(idValue, values));
+    dispatch(contactsOperations.update({ idValue, ...values }));
     resetForm();
     onSubmit();
   };
