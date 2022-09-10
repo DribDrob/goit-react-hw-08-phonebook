@@ -30,6 +30,7 @@ const Contacts = () => {
 
   return (
     <Box
+      component="main"
       sx={{
         my: 8,
         mx: 4,

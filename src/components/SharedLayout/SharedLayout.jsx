@@ -7,16 +7,22 @@ import { Outlet } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded';
+import { Footer } from 'components/Footer/Footer';
 
 export const SharedLayout = () => {
   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
+    >
       <Box sx={{ flexGrow: 1, alignItems: 'center' }}>
         <AppBar position="static">
           <Toolbar>
-
             <LocalLibraryRoundedIcon
               fontSize="medium"
               color="inherit"
@@ -39,9 +45,7 @@ export const SharedLayout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      <footer>
-        <p>Footer</p>
-      </footer>
-    </>
+      <Footer />
+    </Box>
   );
 };
