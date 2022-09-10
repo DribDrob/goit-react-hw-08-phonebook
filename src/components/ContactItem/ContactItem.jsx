@@ -16,8 +16,8 @@ export const ContactItem = ({ id, name, number }) => {
         fontSize="large"
         sx={{ mr: 2 }}
       />
-      <ListItemText primary={name} />
-      <ListItemText primary={number} />
+      <ListItemText primary={name} secondary={number} sx={{ maxWidth: 280 }} />
+      {/* <ListItemText primary={number} /> */}
       <Fab color="primary" aria-label="edit" size="small" sx={{ mr: 2 }}>
         <EditIcon />
       </Fab>
