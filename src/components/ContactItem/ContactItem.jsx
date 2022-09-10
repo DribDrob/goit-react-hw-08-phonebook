@@ -4,6 +4,7 @@ import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneAndroidRoundedIcon from '@mui/icons-material/PhoneAndroidRounded';
+
 // import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, number }) => {
@@ -16,12 +17,17 @@ export const ContactItem = ({ id, name, number }) => {
         fontSize="large"
         sx={{ mr: 2 }}
       />
-      <ListItemText primary={name} secondary={number} sx={{ maxWidth: 280 }} />
+      <ListItemText primary={name} secondary={number} sx={{ maxWidth: 320 }} />
       {/* <ListItemText primary={number} /> */}
-      <Fab color="primary" aria-label="edit" size="small" sx={{ mr: 2 }}>
+      <Fab
+        color="primary"
+        aria-label="edit"
+        size="small"
+        sx={{ mr: 2, zIndex: 'auto' }}
+      >
         <EditIcon />
       </Fab>
-      <Fab aria-label="delete" size="small">
+      <Fab aria-label="delete" size="small" sx={{ zIndex: 'auto' }}>
         <DeleteIcon
           disabled={isContactsLoading}
           type="button"

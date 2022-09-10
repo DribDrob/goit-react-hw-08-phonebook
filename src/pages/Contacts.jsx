@@ -32,9 +32,13 @@ const Contacts = () => {
     <Box
       component="main"
       sx={{
-        my: 8,
-        mx: 4,
+        // my: 8,
+        // mx: 4,
+        mb: 'auto',
+        px: 4,
+        py: 12,
         display: 'flex',
+        // justifyContent: 'space-around',
         // flexDirection: 'column',
         alignItems: 'top',
       }}
@@ -57,17 +61,15 @@ const Contacts = () => {
       <Box
         sx={{
           mx: 4,
-          flexGrow: 2,
+          flexGrow: 1,
         }}
       >
-        <Typography
-          variant="h5"
-          component="p"
-          // sx={{ flexGrow: 1 }}
-        >
-          Contacts
-        </Typography>
-        <ContactFilter />
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography variant="h5" component="p" sx={{ mx: 3 }}>
+            Contacts
+          </Typography>
+          <ContactFilter />
+        </Box>
         {/* {isFetching && <Loader />} */}
 
         {contactsItems.length !== 0 && <ContactList contacts={contactsItems} />}

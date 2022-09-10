@@ -20,8 +20,8 @@ export const SharedLayout = () => {
         minHeight: '100vh',
       }}
     >
-      <Box sx={{ flexGrow: 1, alignItems: 'center' }}>
-        <AppBar position="static">
+      <Box sx={{ alignItems: 'center' }}>
+        <AppBar position="fixed">
           <Toolbar>
             <LocalLibraryRoundedIcon
               fontSize="medium"

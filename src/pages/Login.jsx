@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 const Login = () => {
   return (
     // <ThemeProvider theme={theme}>
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <Grid container component="main" sx={{ height: '100vh', py: 6 }}>
       {/* <CssBaseline /> */}
       <Grid
         item

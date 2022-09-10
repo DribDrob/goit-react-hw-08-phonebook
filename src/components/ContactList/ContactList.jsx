@@ -5,7 +5,7 @@ import { List } from '@mui/material';
 
 export const ContactList = ({ contacts }) => {
   return (
-    <List sx={{ width: '100%' }}>
+    <List sx={{ width: 1 }}>
       {contacts.map(contact => (
         <ContactItem key={contact.id} {...contact} />
       ))}

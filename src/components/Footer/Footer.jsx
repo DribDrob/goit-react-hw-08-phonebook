@@ -22,9 +22,12 @@ export const Footer = () => {
     <Box
       component="footer"
       sx={{
-        py: 3,
+        py: 2,
         px: 2,
         mt: 'auto',
+        position: 'fixed',
+        bottom: 0,
+        width: 1,
         textAlign: 'center',
         backgroundColor: theme =>
           theme.palette.mode === 'light'

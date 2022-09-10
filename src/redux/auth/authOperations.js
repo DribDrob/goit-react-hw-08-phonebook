@@ -62,6 +62,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
+    
       const data = await authApi.fetchCurrentUser();
       return data;
     } catch (error) {

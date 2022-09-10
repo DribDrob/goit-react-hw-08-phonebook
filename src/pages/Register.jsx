@@ -12,7 +12,13 @@ import {
 const Register = () => {
   return (
     // <ThemeProvider theme={theme}>
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        py: 6,
+      }}
+    >
       {/* <CssBaseline /> */}
       <Box
         sx={{
