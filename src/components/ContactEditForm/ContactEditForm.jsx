@@ -1,11 +1,9 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import 'react-toastify/dist/ReactToastify.css';
-// import Button from '@mui/material/Button';
+
 import { Box, Fab, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts';
-// import { changeEditStatus } from 'redux/contacts/contactsSlice';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 const schema = yup.object().shape({

@@ -1,23 +1,10 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import {
-  Avatar,
-  Box,
-  // CssBaseline,
-  Grid,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Grid, Paper, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { Title } from './Titles.styled';
-
-// const theme = createTheme();
 
 const Login = () => {
   return (
-    // <ThemeProvider theme={theme}>
     <Grid container component="main" sx={{ height: '100vh', py: 6 }}>
-      {/* <CssBaseline /> */}
       <Grid
         item
         xs={false}
@@ -55,7 +42,6 @@ const Login = () => {
         </Box>
       </Grid>
     </Grid>
-    // </ThemeProvider>
   );
 };
 

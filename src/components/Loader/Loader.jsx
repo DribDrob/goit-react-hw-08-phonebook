@@ -1,14 +1,10 @@
-import { FallingLines } from 'react-loader-spinner';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const Loader = () => {
   return (
-    <div>
-      <FallingLines
-        color="#395968"
-        width="100"
-        visible={true}
-        ariaLabel="falling-lines-loading"
-      />
-    </div>
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress />
+    </Box>
   );
 };

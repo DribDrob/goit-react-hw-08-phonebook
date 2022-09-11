@@ -2,7 +2,7 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+
 import { authOperations, authSelectors } from 'redux/auth';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';
@@ -38,19 +38,11 @@ export const App = () => {
                 <Route element={<PrivateRoutes />}>
                   <Route path="contacts" element={<Contacts />} />
                 </Route>
-                {/* <Route
-              element={
-                <PrivateRoutes path="contacts">
-                  <Contacts />
-                </PrivateRoutes>
-              }
-            /> */}
                 <Route element={<PublicRoutes restricted />}>
                   <Route path="*" element={<Login />} />
                 </Route>
               </Route>
             </Routes>
-            <ToastContainer autoClose={3000} />
           </ThemeProvider>
         </div>
       )}

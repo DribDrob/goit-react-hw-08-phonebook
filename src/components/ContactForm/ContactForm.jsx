@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '@mui/material/Button';
 import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -22,15 +22,6 @@ const schema = yup.object().shape({
     )
     .required(),
 });
-
-// const FormError = ({ name }) => {
-//   return (
-//     <ErrorMessage
-//       name={name}
-//       render={message => <ErrorText>{message}</ErrorText>}
-//     />
-//   );
-// };
 
 const initialValues = {
   name: '',

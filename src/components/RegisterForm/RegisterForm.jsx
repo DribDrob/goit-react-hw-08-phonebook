@@ -1,12 +1,9 @@
-// import { Formik} from 'formik';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+
 import { authOperations } from 'redux/auth';
 import { Box, Button, TextField } from '@mui/material';
-// import { FormEl, Label, Input, ErrorText, Button } from './RegisterForm.styled';
 
 const schema = yup.object().shape({
   name: yup.string().required(),

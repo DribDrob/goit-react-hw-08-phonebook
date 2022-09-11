@@ -1,16 +1,18 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContactList } from 'components/ContactList/ContactList';
-// import { ToastContainer } from 'react-toastify';
 import { contactsOperations } from 'redux/contacts';
 import { useEffect } from 'react';
-// import { Title, Subtitle } from './Titles.styled';
-// import { Loader } from './Loader/Loader';
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
-import { getContacts, getFilterValue } from 'redux/contacts/contactsSelectors';
+import contactsSelectors, {
+  getContacts,
+  getFilterValue,
+} from 'redux/contacts/contactsSelectors';
 import { Box, Typography } from '@mui/material';
+import { Loader } from 'components/Loader/Loader';
 
 const Contacts = () => {
+  const isLoading = useSelector(contactsSelectors.isContactsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,14 +34,10 @@ const Contacts = () => {
     <Box
       component="main"
       sx={{
-        // my: 8,
-        // mx: 4,
         mb: 'auto',
         px: 4,
         py: 12,
         display: 'flex',
-        // justifyContent: 'space-around',
-        // flexDirection: 'column',
         alignItems: 'top',
       }}
     >
@@ -49,11 +47,7 @@ const Contacts = () => {
           mx: 4,
         }}
       >
-        <Typography
-          variant="h5"
-          component="p"
-          // sx={{ flexGrow: 1 }}
-        >
+        <Typography variant="h5" component="p">
           Fill to add a contact
         </Typography>
         <ContactForm />
@@ -70,11 +64,11 @@ const Contacts = () => {
           </Typography>
           <ContactFilter />
         </Box>
-        {/* {isFetching && <Loader />} */}
-
-        {contactsItems.length !== 0 && <ContactList contacts={contactsItems} />}
-
-        {/* <ToastContainer autoClose={3000} /> */}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          contactsItems.length !== 0 && <ContactList contacts={contactsItems} />
+        )}
       </Box>
     </Box>
   );
