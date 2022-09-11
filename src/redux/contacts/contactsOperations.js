@@ -39,10 +39,9 @@ const remove = createAsyncThunk(
 const update = createAsyncThunk(
   'contacts/update',
   async (updatedContact, { rejectWithValue }) => {
-    console.log(updatedContact);
     try {
       const contact = await contactsApi.updateContact(updatedContact);
-      return contact;
+           return contact;
     } catch (error) {
       return rejectWithValue(error);
     }

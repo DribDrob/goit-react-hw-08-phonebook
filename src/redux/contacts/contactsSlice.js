@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   error: null,
   filter: '',
-  // isEdit: false,
+
 }
 
 const contactsSlice = createSlice({
@@ -15,8 +15,6 @@ const contactsSlice = createSlice({
   reducers: {
     changeFilter(state, { payload })
     { state.filter = payload; },
-    // changeEditStatus(state, _)
-    // { state.isEdit = !state.isEdit }
   },
   extraReducers: {
     [contactsOperations.get.pending](state, _) {
@@ -53,7 +51,8 @@ const contactsSlice = createSlice({
       state.isLoading = true;
     },
     [contactsOperations.update.fulfilled](state, { payload }) {
-      state.items.push(payload);
+      const updItemIndx = state.items.findIndex(item => item.id === payload.id);
+      state.items.splice(updItemIndx, 1, payload );
       state.isLoading = false;
     },
     [contactsOperations.update.rejected](state, _) {
@@ -62,7 +61,5 @@ const contactsSlice = createSlice({
     }
   },
 );
-export const { changeFilter,
-  // changeEditStatus
-} = contactsSlice.actions;
+export const { changeFilter} = contactsSlice.actions;
 export default contactsSlice.reducer;

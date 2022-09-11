@@ -25,7 +25,7 @@ export const ContactItem = ({ id, name, number }) => {
       />
       {isEdit ? (
         <ContactEditForm
-          idValue={id}
+          id={id}
           initialValues={{ name, number }}
           onSubmit={() => setIsEdit(false)}
         />
