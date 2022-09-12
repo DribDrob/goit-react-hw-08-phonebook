@@ -4,16 +4,12 @@ import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneAndroidRoundedIcon from '@mui/icons-material/PhoneAndroidRounded';
-// import { changeEditStatus } from 'redux/contacts/contactsSlice';
 import { ContactEditForm } from 'components/ContactEditForm/ContactEditForm';
 import { useState } from 'react';
-
-// import { Item, ContactName, ContactNumber, Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, number }) => {
   const [isEdit, setIsEdit] = useState(false);
   const isContactsLoading = useSelector(contactsSelectors.isContactsLoading);
-  // const isContactEditing = useSelector(contactsSelectors.isContactEditing);
 
   const dispatch = useDispatch();
   return (
@@ -43,10 +39,7 @@ export const ContactItem = ({ id, name, number }) => {
           size="small"
           sx={{ mr: 2, zIndex: 'auto' }}
         >
-          <EditIcon
-            onClick={() => setIsEdit(true)}
-            // onClick={() => dispatch(changeEditStatus())}
-          />
+          <EditIcon onClick={() => setIsEdit(true)} />
         </Fab>
       )}
       <Fab

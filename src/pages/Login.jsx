@@ -6,7 +6,7 @@ import { getError } from 'redux/contacts/contactsSelectors';
 
 const Login = () => {
   const isError = useSelector(getError);
-  // const dispatch = useDispatch();
+
   return (
     <Grid container component="main" sx={{ height: '100vh', py: 6 }}>
       <Grid
@@ -44,16 +44,10 @@ const Login = () => {
           </Typography>
           <LoginForm />
           {isError && (
-            // <Snackbar autoHideDuration={6000}>
-            <Alert
-              // onClose={()=>dispatch(authOperations);}
-              severity="error"
-              sx={{ width: '100%', textAlign: 'center' }}
-            >
+            <Alert severity="error" sx={{ width: '100%', textAlign: 'center' }}>
               Please, enter valid email and password <br /> or
               <br /> Sign up!
             </Alert>
-            // </Snackbar>
           )}
         </Box>
       </Grid>

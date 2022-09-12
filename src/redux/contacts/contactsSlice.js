@@ -5,9 +5,6 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  // success: false,
-  // errorType: '',
-  // errorMessage: '',
   filter: '',
 };
 
@@ -36,7 +33,6 @@ const contactsSlice = createSlice({
     },
     [contactsOperations.add.fulfilled](state, { payload }) {
       state.items.push(payload);
-      // state.success = true;
       state.isLoading = false;
     },
     [contactsOperations.add.rejected](state, { payload }) {

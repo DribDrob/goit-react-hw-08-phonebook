@@ -32,9 +32,7 @@ export const Footer = () => {
         backgroundColor: theme => theme.palette.secondary.light,
       }}
     >
-      <Container
-      //   maxWidth="sm"
-      >
+      <Container>
         <Link
           color="inherit"
           href="https://u24.gov.ua/"

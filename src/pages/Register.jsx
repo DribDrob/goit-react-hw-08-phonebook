@@ -1,17 +1,9 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import {
-  Avatar,
-  Box,
-  Container,
-  // CssBaseline,
-  Typography,
-} from '@mui/material';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Avatar, Box, Container, Typography } from '@mui/material';
 
 const Register = () => {
   return (
-    // <ThemeProvider theme={theme}>
     <Container
       component="main"
       maxWidth="xs"
@@ -19,7 +11,6 @@ const Register = () => {
         py: 6,
       }}
     >
-      {/* <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -37,7 +28,6 @@ const Register = () => {
         <RegisterForm />
       </Box>
     </Container>
-    // </ThemeProvider>
   );
 };
 

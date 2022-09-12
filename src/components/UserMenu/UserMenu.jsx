@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import { authOperations } from 'redux/auth';
+
 function stringToColor(string) {
   let hash = 0;
   let i;

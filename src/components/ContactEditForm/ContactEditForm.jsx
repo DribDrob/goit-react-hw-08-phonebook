@@ -57,7 +57,6 @@ export const ContactEditForm = ({ id, initialValues, onSubmit }) => {
         }}
       >
         <TextField
-          // margin="normal"
           fullWidth
           required
           variant="standard"
@@ -65,7 +64,6 @@ export const ContactEditForm = ({ id, initialValues, onSubmit }) => {
           id="name"
           label="Name"
           name="name"
-          // defaultValue={initialValues.name}
           value={formik.values.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
@@ -73,16 +71,13 @@ export const ContactEditForm = ({ id, initialValues, onSubmit }) => {
           autoFocus
         />
         <TextField
-          // margin="normal"
           fullWidth
           required
           variant="standard"
           size="small"
           name="number"
           label="Number"
-          //   type="number"
           id="number"
-          // defaultValue={initialValues.number}
           value={formik.values.number}
           onChange={formik.handleChange}
           error={formik.touched.number && Boolean(formik.errors.number)}

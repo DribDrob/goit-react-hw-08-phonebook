@@ -87,29 +87,5 @@ export const RegisterForm = () => {
         Sign Up
       </Button>
     </Box>
-    // <Formik
-    //   initialValues={initialValues}
-    //   validationSchema={schema}
-    //   onSubmit={handleSubmit}
-    // >
-    //   <FormEl autoComplete="off">
-    //     <Label>
-    //       <span>Name</span>
-    //       <Input type="text" name="name" />
-    //       <FormError name="name" />
-    //     </Label>
-    //     <Label>
-    //       <span>Email</span>
-    //       <Input type="email" name="email" />
-    //       <FormError name="email" />
-    //     </Label>
-    //     <Label>
-    //       <span>Password</span>
-    //       <Input type="password" name="password" />
-    //       <FormError name="password" />
-    //     </Label>
-    //     <Button type="submit">Sign up</Button>
-    //   </FormEl>
-    // </Formik>
   );
 };

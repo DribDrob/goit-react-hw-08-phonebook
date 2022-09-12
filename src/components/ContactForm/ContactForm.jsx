@@ -42,14 +42,6 @@ export const ContactForm = () => {
     onSubmit: handleSubmit,
   });
 
-  // const addContactItem = newContact => {
-  //   if (contacts.find(contact => contact.name === newContact.name)) {
-  //     toast.error(`${newContact.name} is already in contacts.`);
-  //     return;
-  //   }
-  //   addContact(newContact);
-  // };
-
   return (
     <Box
       component="form"

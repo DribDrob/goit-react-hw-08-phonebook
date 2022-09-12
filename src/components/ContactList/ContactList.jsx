@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { List } from '@mui/material';
-// import { List } from './ContactList.styled';
 
 export const ContactList = ({ contacts }) => {
   return (

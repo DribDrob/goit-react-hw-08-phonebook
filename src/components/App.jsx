@@ -2,7 +2,6 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import { authOperations, authSelectors } from 'redux/auth';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';

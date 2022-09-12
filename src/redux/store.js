@@ -12,7 +12,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { contactsReducer } from './contacts';
-// import { errorReducer } from './error';
 
 const authPersistConfig = {
   key: 'auth',
@@ -24,7 +23,6 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
-    // error: errorReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

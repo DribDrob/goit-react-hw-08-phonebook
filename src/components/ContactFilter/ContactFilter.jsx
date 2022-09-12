@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilterValue } from 'redux/contacts/contactsSelectors';
 import { changeFilter } from 'redux/contacts/contactsSlice';
 import SearchIcon from '@mui/icons-material/Search';
-// import { FilterField } from './ContactFilter.styled';
 
 export const ContactFilter = () => {
   const filter = useSelector(getFilterValue);
