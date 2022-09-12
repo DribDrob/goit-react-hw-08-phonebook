@@ -29,10 +29,7 @@ export const Footer = () => {
         bottom: 0,
         width: 1,
         textAlign: 'center',
-        backgroundColor: theme =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
+        backgroundColor: theme => theme.palette.secondary.light,
       }}
     >
       <Container

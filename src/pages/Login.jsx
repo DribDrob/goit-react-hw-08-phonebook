@@ -1,8 +1,12 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Avatar, Box, Grid, Paper, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Grid, Paper, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useSelector } from 'react-redux';
+import { getError } from 'redux/contacts/contactsSelectors';
 
 const Login = () => {
+  const isError = useSelector(getError);
+  // const dispatch = useDispatch();
   return (
     <Grid container component="main" sx={{ height: '100vh', py: 6 }}>
       <Grid
@@ -12,7 +16,7 @@ const Login = () => {
         md={7}
         sx={{
           backgroundImage:
-            'url(https://source.unsplash.com/random?phone&book&contact)',
+            'url(https://source.unsplash.com/random?phone&call&contact)',
           backgroundRepeat: 'no-repeat',
           backgroundColor: t =>
             t.palette.mode === 'light'
@@ -39,6 +43,18 @@ const Login = () => {
             Sign in
           </Typography>
           <LoginForm />
+          {isError && (
+            // <Snackbar autoHideDuration={6000}>
+            <Alert
+              // onClose={()=>dispatch(authOperations);}
+              severity="error"
+              sx={{ width: '100%', textAlign: 'center' }}
+            >
+              Please, enter valid email and password <br /> or
+              <br /> Sign up!
+            </Alert>
+            // </Snackbar>
+          )}
         </Box>
       </Grid>
     </Grid>

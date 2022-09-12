@@ -6,21 +6,28 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isCurrentUserLoading: false,
+  error: null,
+  // success: false,
+  // errorType: '',
+  // errorMessage: '',
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [authOperations.register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperations.register.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.token = payload.token;
       state.isLoggedIn = true;
     },
-    [authOperations.logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperations.logIn.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.token = payload.token;
       state.isLoggedIn = true;
+    },
+    [authOperations.logIn.rejected](state, { payload }) {
+      state.error = `${payload}`;
     },
     [authOperations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
@@ -30,8 +37,8 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.pending](state) {
       state.isCurrentUserLoading = true;
     },
-    [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
+    [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      state.user = payload;
       state.isLoggedIn = true;
       state.isCurrentUserLoading = false;
     },

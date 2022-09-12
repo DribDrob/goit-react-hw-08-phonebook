@@ -6,19 +6,16 @@ import { authOperations } from 'redux/auth';
 import { Box, Button, TextField } from '@mui/material';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().required(),
-  password: yup.string().required(),
+  name: yup.string('Enter your name').required('Name is required'),
+  email: yup
+    .string('Enter your email')
+    .required('Email is required')
+    .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Please, enter valid email'),
+  password: yup
+    .string('Enter your password')
+    .required('Password is required')
+    .min(7, 'Password should be of minimum 7 characters length'),
 });
-
-// const FormError = ({ name }) => {
-//   return (
-//     <ErrorMessage
-//       name={name}
-//       render={message => <ErrorText>{message}</ErrorText>}
-//     />
-//   );
-// };
 
 const initialValues = {
   name: '',
@@ -49,7 +46,6 @@ export const RegisterForm = () => {
     >
       <TextField
         margin="normal"
-        required
         fullWidth
         id="name"
         label="Name"
@@ -57,12 +53,12 @@ export const RegisterForm = () => {
         value={formik.values.name}
         onChange={formik.handleChange}
         error={formik.touched.name && Boolean(formik.errors.name)}
+        helperText={formik.touched.name && formik.errors.name}
         autoComplete="name"
         autoFocus
       />
       <TextField
         margin="normal"
-        required
         fullWidth
         id="email"
         label="Email Address"
@@ -70,12 +66,12 @@ export const RegisterForm = () => {
         value={formik.values.email}
         onChange={formik.handleChange}
         error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}
         autoComplete="email"
         autoFocus
       />
       <TextField
         margin="normal"
-        required
         fullWidth
         name="password"
         label="Password"
@@ -84,6 +80,7 @@ export const RegisterForm = () => {
         value={formik.values.password}
         onChange={formik.handleChange}
         error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}
         autoComplete="current-password"
       />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>

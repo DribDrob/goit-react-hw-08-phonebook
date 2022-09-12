@@ -4,30 +4,32 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { contactsOperations } from 'redux/contacts';
 import { useEffect } from 'react';
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
-import contactsSelectors, {
+import {
+  isContactsLoading,
   getContacts,
   getFilterValue,
+  getError,
 } from 'redux/contacts/contactsSelectors';
-import { Box, Typography } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 import { Loader } from 'components/Loader/Loader';
 
 const Contacts = () => {
-  const isLoading = useSelector(contactsSelectors.isContactsLoading);
+  const isLoading = useSelector(isContactsLoading);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilterValue);
+  const isError = useSelector(getError);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(contactsOperations.get());
   }, [dispatch]);
 
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilterValue);
-
   const showFilteredContacts = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-
   const contactsItems = showFilteredContacts();
 
   return (
@@ -51,6 +53,11 @@ const Contacts = () => {
           Fill to add a contact
         </Typography>
         <ContactForm />
+        {isError && (
+          <Alert severity="error" sx={{ width: '100%', textAlign: 'center' }}>
+            Something went wrong, try again!
+          </Alert>
+        )}
       </Box>
       <Box
         sx={{

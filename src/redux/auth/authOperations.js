@@ -15,38 +15,38 @@ const register = createAsyncThunk(
   'auth/register',
   async (user, { rejectWithValue }) => {
     try {
-        const data = await authApi.registerUser(user);
-        token.set(data.token);
+      const data = await authApi.registerUser(user);
+      token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 const logIn = createAsyncThunk(
   'auth/login',
   async (user, { rejectWithValue }) => {
     try {
-        const data = await authApi.logIn(user);
-         token.set(data.token);
+      const data = await authApi.logIn(user);
+      token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 const logOut = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-        await authApi.logOut();
-        token.unset();
-          } catch (error) {
-      return rejectWithValue(error);
+      await authApi.logOut();
+      token.unset();
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 const fetchCurrentUser = createAsyncThunk(
@@ -56,19 +56,17 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      console.log('No token');
       return thunkAPI.rejectWithValue();
     }
 
     token.set(persistedToken);
     try {
-    
       const data = await authApi.fetchCurrentUser();
       return data;
     } catch (error) {
-        console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 const operations = {

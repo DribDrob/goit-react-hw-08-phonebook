@@ -8,21 +8,16 @@ import Button from '@mui/material/Button';
 import { Box, TextField } from '@mui/material';
 
 const schema = yup.object().shape({
-  email: yup.string().required(),
-  password: yup.string().required(),
+  email: yup.string('Enter your email').required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .required('Password is required')
+    .min(7, 'Password should be of minimum 7 characters length'),
 });
 const initialValues = {
   email: '',
   password: '',
 };
-// const FormError = ({ name }) => {
-//   return (
-//     <ErrorMessage
-//       name={name}
-//       render={message => <ErrorText>{message}</ErrorText>}
-//     />
-//   );
-// };
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -38,11 +33,6 @@ export const LoginForm = () => {
   });
 
   return (
-    // <Formik
-    //   initialValues={initialValues}
-    //   validationSchema={schema}
-    //   onSubmit={handleSubmit}
-    // >
     <Box
       component="form"
       onSubmit={formik.handleSubmit}
@@ -53,7 +43,6 @@ export const LoginForm = () => {
     >
       <TextField
         margin="normal"
-        required
         fullWidth
         id="email"
         label="Email Address"
@@ -61,12 +50,12 @@ export const LoginForm = () => {
         value={formik.values.email}
         onChange={formik.handleChange}
         error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}
         autoComplete="email"
         autoFocus
       />
       <TextField
         margin="normal"
-        required
         fullWidth
         name="password"
         label="Password"
@@ -75,18 +64,12 @@ export const LoginForm = () => {
         value={formik.values.password}
         onChange={formik.handleChange}
         error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}
         autoComplete="current-password"
       />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>
         Sign In
       </Button>
-      {/* <Grid container>
-          <Grid item>
-            <Link component={RouterLink} to="/register" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid> */}
     </Box>
     // </Formik>
   );

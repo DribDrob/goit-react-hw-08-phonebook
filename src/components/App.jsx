@@ -19,7 +19,16 @@ export const App = () => {
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#2c588a',
+      },
+      secondary: {
+        main: '#a69cac',
+      },
+    },
+  });
   return (
     <>
       {!isCurrentUserLoading && (

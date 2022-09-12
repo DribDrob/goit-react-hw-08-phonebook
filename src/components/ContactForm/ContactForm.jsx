@@ -13,14 +13,15 @@ const schema = yup.object().shape({
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
-    .required(),
+    .required('Name is required'),
   number: yup
     .string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
     )
-    .required(),
+    .required('Number is required')
+    .min(5, 'Number should be of minimum 7 characters length'),
 });
 
 const initialValues = {
@@ -61,7 +62,6 @@ export const ContactForm = () => {
       <TextField
         margin="normal"
         fullWidth
-        required
         size="small"
         id="name"
         label="Name"
@@ -69,13 +69,13 @@ export const ContactForm = () => {
         value={formik.values.name}
         onChange={formik.handleChange}
         error={formik.touched.name && Boolean(formik.errors.name)}
+        helperText={formik.touched.name && formik.errors.name}
         autoComplete="name"
         autoFocus
       />
       <TextField
         margin="normal"
         fullWidth
-        required
         size="small"
         name="number"
         label="Number"
@@ -84,6 +84,7 @@ export const ContactForm = () => {
         value={formik.values.number}
         onChange={formik.handleChange}
         error={formik.touched.number && Boolean(formik.errors.number)}
+        helperText={formik.touched.number && formik.errors.number}
         autoComplete="current-number"
       />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, px: 3 }}>
