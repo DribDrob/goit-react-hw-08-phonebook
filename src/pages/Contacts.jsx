@@ -8,7 +8,7 @@ import {
   isContactsLoading,
   getContacts,
   getFilterValue,
-  getError,
+  getContactsError,
 } from 'redux/contacts/contactsSelectors';
 import { Alert, Box, Typography } from '@mui/material';
 import { Loader } from 'components/Loader/Loader';
@@ -17,7 +17,7 @@ const Contacts = () => {
   const isLoading = useSelector(isContactsLoading);
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilterValue);
-  const isError = useSelector(getError);
+  const isError = useSelector(getContactsError);
 
   const dispatch = useDispatch();
 

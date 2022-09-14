@@ -2,10 +2,10 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 import { Alert, Avatar, Box, Grid, Paper, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useSelector } from 'react-redux';
-import { getError } from 'redux/contacts/contactsSelectors';
+import { authSelectors } from 'redux/auth';
 
 const Login = () => {
-  const isError = useSelector(getError);
+  const isError = useSelector(authSelectors.getAuthError);
 
   return (
     <Grid container component="main" sx={{ height: '100vh', py: 6 }}>
@@ -44,7 +44,10 @@ const Login = () => {
           </Typography>
           <LoginForm />
           {isError && (
-            <Alert severity="error" sx={{ width: '100%', textAlign: 'center' }}>
+            <Alert
+              severity="error"
+              sx={{ width: '100%', textAlign: 'center', maxWidth: '320px' }}
+            >
               Please, enter valid email and password <br /> or
               <br /> Sign up!
             </Alert>
